@@ -8,7 +8,7 @@ function Template({ children }) {
 
   return (
     <div>
-      {path !== '/sigin' && path !== '/admin' ? <Header /> : null}
+      {path !== '/signin' && path !== '/admin' ? <Header /> : null}
       {children}
     </div>
   );

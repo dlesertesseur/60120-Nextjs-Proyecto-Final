@@ -29,7 +29,7 @@ const Header = ({ children }) => {
             <Link href={"/cart"}>
               <IconButton src={"/cart.png"} />
             </Link>
-            <Link href={"/sigin"}>
+            <Link href={"/signin"}>
               <IconButton src={"/user.png"} />
             </Link>
           </Section>

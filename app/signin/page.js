@@ -3,7 +3,7 @@ import SinginPanel from "../components/admin/SinginPanel";
 import { APP_DESCRIPTION, APP_NAME } from "../data/consfig";
 
 export const metadata = {
-  title: `${APP_NAME} - Sigin`,
+  title: `${APP_NAME} - SignIn`,
   description: `${APP_DESCRIPTION}`,
 };
 

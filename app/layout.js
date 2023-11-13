@@ -5,7 +5,7 @@ import { APP_DESCRIPTION, APP_KEYWORDS, APP_NAME } from './data/consfig'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: `${APP_NAME} - Cart`,
+  title: `${APP_NAME} - Home`,
   description: `${APP_DESCRIPTION}`,
   keywords: APP_KEYWORDS,
   icons: {
