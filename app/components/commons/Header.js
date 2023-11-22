@@ -5,10 +5,15 @@ import LinkButton from "./LinkButton";
 import SearchBox from "./SearchBox";
 import IconButton from "./IconButton";
 import Image from "next/image";
-import { categories, menuPages, opportunities } from "../../data/data";
 import Link from "next/link";
+import { menuPages, opportunities } from "../../data/data";
+import { getCategories } from "@/app/data/CategoryDao";
+import CartButton from "./CartButton";
 
-const Header = ({ children }) => {
+const Header = async ({ children }) => {
+  
+  const categories = await getCategories();
+
   return (
     <header
       className={
@@ -27,7 +32,7 @@ const Header = ({ children }) => {
 
           <Section align="right" className="invisible sm:visible">
             <Link href={"/cart"}>
-              <IconButton src={"/cart.png"} />
+              <CartButton src={"/cart.png"} />
             </Link>
             <Link href={"/signin"}>
               <IconButton src={"/user.png"} />

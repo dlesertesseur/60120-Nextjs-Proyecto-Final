@@ -4,54 +4,51 @@ export const menuPages = [
 ];
 
 export const opportunities = [
-  { value: "Home", href: "/" },
-  // { value: "Offers", href: "/offers" },
-  // { value: "Promotions", href: "/promotions" },
-  // { value: "Discounts", href: "/discounts" },
+  { value: "Home", href: "/home" },
 ];
 
-export const categories = [
-  {
-    value: "Todas",
-    href: "/products/all",
-    slug: "all",
-  },
-  {
-    value: "Alfajores",
-    href: "/products/alfajores",
-    slug: "alfajores",
-  },
-  {
-    value: "Golosinas",
-    href: "/products/golosinas",
-    slug: "golosinas",
-  },
-  {
-    value: "Chocolates",
-    href: "/products/chocolates",
-    slug: "chocolates",
-  },
-  {
-    value: "Cocina",
-    href: "/products/cocina",
-    slug: "cocina",
-  },
-  {
-    value: "Galletitas",
-    href: "/products/galletitas",
-    slug: "galletitas",
-  },
-  {
-    value: "Gelatinas",
-    href: "/products/gelatinas",
-    slug: "gelatinas",
-  },
-  {
-    value: "Jugos",
-    href: "/products/jugos",
-    slug: "jugos",
-  },
-];
+// export const categories = [
+//   {
+//     value: "Todas",
+//     href: "/products/all",
+//     slug: "all",
+//   },
+//   {
+//     value: "Alfajores",
+//     href: "/products/alfajores",
+//     slug: "alfajores",
+//   },
+//   {
+//     value: "Golosinas",
+//     href: "/products/golosinas",
+//     slug: "golosinas",
+//   },
+//   {
+//     value: "Chocolates",
+//     href: "/products/chocolates",
+//     slug: "chocolates",
+//   },
+//   {
+//     value: "Cocina",
+//     href: "/products/cocina",
+//     slug: "cocina",
+//   },
+//   {
+//     value: "Galletitas",
+//     href: "/products/galletitas",
+//     slug: "galletitas",
+//   },
+//   {
+//     value: "Gelatinas",
+//     href: "/products/gelatinas",
+//     slug: "gelatinas",
+//   },
+//   {
+//     value: "Jugos",
+//     href: "/products/jugos",
+//     slug: "jugos",
+//   },
+// ];
 
 export const products_old = [
   {
@@ -1850,19 +1847,19 @@ export const products_old = [
 ];
 
 export const products = [
-  {
-    id: "4319fd32-022e-4968-984d-2a8dacf6bdbc",
-    description: "Alfajor SHOT Triple Relleno De Chocolate Con Maní 60g",
-    currency: "PESO",
-    ean: "77956699",
-    price: 225,
-    sku: "140106",
-    category: "ALFAJORES",
-    brand: "Shot",
-    image: "/images/products/00140106.jpg",
-    stock: 120,
-    slug: "alfajor-shot-triple-relleno-de-chocolate-con-mana-60g",
-  },
+  // {
+  //   id: "4319fd32-022e-4968-984d-2a8dacf6bdbc",
+  //   description: "Alfajor SHOT Triple Relleno De Chocolate Con Maní 60g",
+  //   currency: "PESO",
+  //   ean: "77956699",
+  //   price: 225,
+  //   sku: "140106",
+  //   category: "ALFAJORES",
+  //   brand: "Shot",
+  //   image: "/images/products/00140106.jpg",
+  //   stock: 120,
+  //   slug: "alfajor-shot-triple-relleno-de-chocolate-con-mana-60g",
+  // },
   {
     id: "985f879c-61f1-40f1-b123-95b5fa13a5ba",
     description: "Alfajor TERRABUSI Blanco Glaseado 38g",

@@ -7,19 +7,19 @@ const Menu = ({ text, items = [], className }) => {
 
   return (
     <div
-      // onMouseOver={() => {
-      //   setOpen(true);
-      // }}
       onClick={() => {
         setOpen(!open);
       }}
     >
       <div
         className={`font-medium 
-        rounded-lg 
+        rounded-md
         text-sm 
         text-center 
         inline-flex 
+        bg-slate-200
+        p-2
+        hover:bg-slate-300
         items-center ${className}`}
       >
         {text}
@@ -58,7 +58,7 @@ const Menu = ({ text, items = [], className }) => {
                 href={`/products/${i.slug}`}
                 className="block px-4 py-2 hover:bg-gray-200 text-xs"
               >
-                {i.value}
+                {`${i.value}`}
               </Link>
             </li>
           );

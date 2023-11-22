@@ -1,21 +1,46 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import ProductCounter from "../ProductCounter";
+import DeleteButton from "../DeleteButton";
 
 const Table = ({ columns, rows, onDelete = null, onUpdate = null }) => {
-  const createField = (value, type) => {
+  const createField = (obj, col, type) => {
     let field = null;
     switch (type) {
       case "image":
-        field = <Image src={value} width={32} height={32} alt={""} />;
+        field = <Image src={obj[col]} width={32} height={32} alt={""} />;
+        break;
+
+      case "price":
+        field = `$ ${obj[col]}`;
+        break;
+
+      case "subTotal":
+        field = `$ ${obj["price"] * obj["quantity"]}`;
         break;
 
       case "quantity":
-        field = <ProductCounter/>;
+        field = (
+          <ProductCounter
+            setValue={(value) => {
+              onUpdate(obj, value);
+            }}
+            value={obj.quantity}
+          />
+        );
+        break;
+      case "delete":
+        field = (
+          <DeleteButton
+            text={"Delete"}
+            onClick={() => {
+              onDelete(obj);
+            }}
+          ></DeleteButton>
+        );
         break;
       default:
-        field = value;
+        field = obj[col];
         break;
     }
     return field;
@@ -32,32 +57,10 @@ const Table = ({ columns, rows, onDelete = null, onUpdate = null }) => {
         {columns.map((c, index) => {
           return (
             <td key={index} className="px-6 py-4">
-              {createField(row[c.field], c.type)}
+              {createField(row, c.field, c.type)}
             </td>
           );
         })}
-
-        {onUpdate ? (
-          <td className="px-6 py-4">
-            <Link
-              href={`/product/edit/`}
-              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >
-              Edit
-            </Link>
-          </td>
-        ) : null}
-
-        {onDelete ? (
-          <td className="px-6 py-4">
-            <Link
-              href={`/product/delete/`}
-              className="font-medium text-red-600 dark:text-red-500 hover:underline"
-            >
-              Delete
-            </Link>
-          </td>
-        ) : null}
       </tr>
     );
 

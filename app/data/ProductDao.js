@@ -1,14 +1,5 @@
+import { BASE_URL } from "./consfig";
 import { products } from "./data";
-
-export function getProductByEan(ean) {
-  const product = products.find((p) => p.ean.toString() === ean);
-  return product;
-}
-
-export function getProductBySlug(slug) {
-  const product = products.find((p) => p.slug === slug);
-  return product;
-}
 
 export function getOffers(num) {
   const ret = [];
@@ -21,46 +12,46 @@ export function getOffers(num) {
   return ret;
 }
 
-export function getAllProductsByCategory(category) {
-  const ret = products.filter((p) => p.category.toLowerCase() === category);
-  return ret;
+export async function getProductBySlug(slug) {
+  const url = `${BASE_URL}/api/products/${slug}`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
 }
 
-export function getAllProducts() {
-  return products;
+export async function getAllProductsByCategory(category) {
+  const url = `${BASE_URL}/api/products/categories/${category}`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
 }
 
-export function getAllProductsByUser(userId, num) {
-  let ret = null;
-  if (num !== undefined) {
-    ret = products.slice(0, num);
-  } else {
-    ret = products;
-  }
-  return ret;
+export async function getAllProducts() {
+  const url = `${BASE_URL}/api/products`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
 }
 
-export function getAllBrandsByCategory(category) {
-  const brands = new Set();
-  const productsInCategory = products.filter(
-    (p) => p.category.toLowerCase() === category
-  );
-  productsInCategory.forEach((p) => brands.add(p.brand));
-
-  const list = Array.from(brands);
-  list.sort((a, b) => {
-    return a - b;
-  });
-
-  return list;
+export async function getAllProductsByUser(userId, num) {
+  const url = `${BASE_URL}/api/products/users/${userId}`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
 }
 
-export function getAllProductsByCategoryAndBrand(category, brand) {
-  const inCategory = products.filter(
-    (p) => p.category.toLowerCase() === category
-  );
-  const withBrand = inCategory.filter((p) => p.brand === brand);
-  return withBrand;
+export async function getAllBrandsByCategory(category) {
+  const url = `${BASE_URL}/api/products/categories/${category}/brands`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
+}
+
+export async function getAllProductsByCategoryAndBrand(category, brand) {
+  const url = `${BASE_URL}/api/products/categories/${category}/brands/${brand}`;
+  const ret = await fetch(url, { cache: "force-cache" });
+  const data = await ret.json();
+  return data;
 }
 
 export function getItemsInCart() {

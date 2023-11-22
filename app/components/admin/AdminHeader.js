@@ -19,7 +19,7 @@ const AdminHeader = ({ children }) => {
           </Section>
 
           <Section align="right" className="invisible sm:visible">
-            <Link href={"/"}>
+            <Link href={"/home"}>
               <IconButton src={"/logout.png"} />
             </Link>
           </Section>
