@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputEmail = ({ label, setValue, value }) => {
+const InputEmail = ({ label, setValue, value, error }) => {
   return (
     <div>
       <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -15,9 +15,14 @@ const InputEmail = ({ label, setValue, value }) => {
           type="email"
           autoComplete="email"
           required
-          className="w-full rounded-md border-0 px-2 py-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+          className={`w-full rounded-md px-2 py-1  ring-1 ${
+            error ? "ring-red-600 text-red-600 bg-red-100" : "ring-gray-300 text-gray-900"
+          }  placeholder:text-gray-400 sm:text-sm sm:leading-6`}
         />
       </div>
+      {error ? (
+        <div className="block text-xs font-medium text-red-600">{error}</div>
+      ) : null}
     </div>
   );
 };

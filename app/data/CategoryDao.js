@@ -1,4 +1,4 @@
-import { BASE_URL } from "./consfig";
+import { BASE_URL } from "./config";
 
 export const getCategories = async () => {
     const url = `${BASE_URL}/api/categories`;

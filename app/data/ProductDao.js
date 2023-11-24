@@ -1,4 +1,4 @@
-import { BASE_URL } from "./consfig";
+import { BASE_URL } from "./config";
 import { products } from "./data";
 
 export function getOffers(num) {
@@ -33,7 +33,7 @@ export async function getAllProducts() {
   return data;
 }
 
-export async function getAllProductsByUser(userId, num) {
+export async function getAllProductsByUser(userId) {
   const url = `${BASE_URL}/api/products/users/${userId}`;
   const ret = await fetch(url, { cache: "force-cache" });
   const data = await ret.json();

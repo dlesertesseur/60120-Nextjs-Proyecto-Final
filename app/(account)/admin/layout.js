@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/consfig";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
 import AdminHeader from "@/app/components/admin/AdminHeader";
 
 const inter = Inter({ subsets: ["latin"] });

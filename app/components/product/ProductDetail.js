@@ -38,7 +38,7 @@ const ProductDetail = ({ product }) => {
             <PaymentMethods />
           </div>
 
-          <div className="flex items-end">
+          <div className="flex items-end justify-end">
             <AddToCartButton product={product} quantity={quantity} />
           </div>
         </div>

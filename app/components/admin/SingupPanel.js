@@ -5,6 +5,7 @@ import InputPassword from "../commons/InputPassword";
 import Image from "next/image";
 import InputText from "../commons/InputText";
 import { useRouter } from "next/navigation";
+import { BASE_URL } from "@/app/data/config";
 
 const SingupPanel = () => {
   const router = useRouter();
@@ -13,10 +14,32 @@ const SingupPanel = () => {
   const [lastName, setLastName] = useState("");
   const [name, setName] = useState("");
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    router.push("/admin");
-  };
+  async function submitForm(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const body = JSON.stringify({
+      lastName: formData.get("lastName"),
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    });
+
+    const url = `${BASE_URL}/api/users`;
+
+    const res = await fetch(url, {
+      method: "POST",
+      body: body,
+    });
+
+    const ret = await res.json();
+
+    if (ret.error) {
+    } else {
+      router.push("/signin");
+    }
+  }
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -37,10 +60,11 @@ const SingupPanel = () => {
           className="space-y-6"
           onSubmit={submitForm}
           method="POST"
-          action="#"
+          action={`${BASE_URL}/api/users`}
         >
           <InputText
             label={"Last Name"}
+            name={"lastName"}
             setValue={(e) => {
               setLastName(e.target.value);
             }}
@@ -48,6 +72,7 @@ const SingupPanel = () => {
           />
           <InputText
             label={"Name"}
+            name={"name"}
             setValue={(e) => {
               setName(e.target.value);
             }}

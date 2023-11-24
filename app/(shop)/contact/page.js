@@ -1,4 +1,4 @@
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/consfig";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
 import React from "react";
 
 export const metadata = {

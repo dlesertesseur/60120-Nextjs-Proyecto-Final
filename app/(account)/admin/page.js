@@ -4,7 +4,7 @@ import Button from "@/app/components/commons/Button";
 import { getAllProductsByUser } from "@/app/data/ProductDao";
 
 const page = () => {
-  const rows = getAllProductsByUser("", 8);
+  const rows = getAllProductsByUser("");
 
   const onUpdate = () => {};
   const onDelete = () => {};
@@ -25,7 +25,7 @@ const page = () => {
       </div>
       <Table
         columns={columns}
-        rows={rows}
+        rows={rows ? rows : []}
         onDelete={onDelete}
         onUpdate={onUpdate}
       />

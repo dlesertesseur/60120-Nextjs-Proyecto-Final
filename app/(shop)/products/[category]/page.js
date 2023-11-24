@@ -4,7 +4,7 @@ import {
   getAllBrandsByCategory,
 } from "@/app/data/ProductDao";
 import React, { Suspense } from "react";
-import ItemsList from "../../ItemsList";
+import ItemsList from "../../../components/product/ItemsList";
 import LoadingData from "./LoadingData";
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -36,7 +36,7 @@ const page = async ({ params }) => {
         </div>
 
         <div className="flex flex-wrap gap-4 justify-left items-start">
-          <Suspense fallback={<LoadingData />}>
+          <Suspense fallback={<LoadingData text="Loading category ..."/>}>
             <ItemsList category={params.category} />
           </Suspense>
         </div>

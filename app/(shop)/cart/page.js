@@ -1,7 +1,7 @@
 import React from "react";
 import PaymentPanel from "@/app/components/product/PaymentPanel";
 import CartPanel from "@/app/components/product/CartPanel";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/consfig";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
 
 export const metadata = {
   title: `${APP_NAME} - Cart`,

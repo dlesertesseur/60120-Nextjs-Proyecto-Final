@@ -1,6 +1,7 @@
-import ProductDetail from "@/app/components/product/ProductDetail";
 import { getProductBySlug } from "@/app/data/ProductDao";
-import React from "react";
+import React, { Suspense } from "react";
+import ProductDetailPanel from "./ProductDetailPanel";
+import LoadingData from "../../[category]/LoadingData";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const product = await getProductBySlug(params.slug);
@@ -10,12 +11,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 const page = async ({ params }) => {
-  
-  const product = await getProductBySlug(params.slug);
-
   return (
     <main className="flex container m-auto">
-      <ProductDetail product={product} />
+      <Suspense fallback={<LoadingData text={"Loading product details ..."}/>}> 
+        <ProductDetailPanel slug={params.slug} />
+      </Suspense>
     </main>
   );
 };
