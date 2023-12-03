@@ -1,13 +1,15 @@
 import Banner from "@/app/components/commons/Banner";
-import Offers from "@/app/components/product/Offers";
+import ProductsGroup from "@/app/components/product/ProductsGroup";
 
 export default function Home() {
   return (
     <main className="container m-aut">
       <Banner title={"Ofertas"} subtitle={"Por tiempo limitado"}/>
-      <Offers/>
+      <ProductsGroup situation={"OFERTA"}/>
       <Banner title={"Descuentos"} subtitle={"Llevando dos unidades al precio de una"}/>
-      <Offers/>
+      <ProductsGroup situation={"DESCUENTO"}/>
+      <Banner title={"Destacados"} subtitle={"Productos destacados del mes"}/>
+      <ProductsGroup situation={"DESTACADO"}/>
     </main>
   );
 }

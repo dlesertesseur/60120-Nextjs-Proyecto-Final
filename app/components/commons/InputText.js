@@ -1,6 +1,6 @@
 import React from "react";
 
-const InputText = ({ label, setValue, value, name }) => {
+const InputText = ({ label, setValue, value, name, disabled=false }) => {
   return (
     <div>
       <label className="block text-sm font-medium leading-6 text-gray-900">
@@ -8,6 +8,7 @@ const InputText = ({ label, setValue, value, name }) => {
       </label>
       <div className="mt-1">
         <input
+          disabled={disabled ? true : false}
           onChange={setValue}
           value={value}
           id={label}

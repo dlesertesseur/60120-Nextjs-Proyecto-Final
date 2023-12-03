@@ -13,7 +13,7 @@ const ProductDetail = ({ product }) => {
     <div className="container m-auto">
       <div className="flex justify-center">
         <div className="flex justify-center items-center p-2 bg-gray-100 rounded-l-md">
-          <Image src={product?.image} alt="" width={360} height={360} />
+          <Image src={product.image ? product.image : "/noPicture.jpg" } alt="" width={360} height={360} />
         </div>
 
         <div className="grid grid-rows-5 p-2 bg-gray-100 rounded-r-md">

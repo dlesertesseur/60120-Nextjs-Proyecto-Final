@@ -39,7 +39,7 @@ const SinginPanel = () => {
       setError(err);
     } else {
       setUser(ret);
-      router.push("/admin");
+      router.push(`/admin/${ret.id}`);
     }
   }
 

@@ -1,13 +1,13 @@
 import { db } from "@/firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 const collName = "products";
 export async function GET(request, { params }) {
-  try {
+  try {  
     const coll = collection(db, collName);
-    const querySnapshot = await getDocs(coll);
-
+    const sectionsQueryRef = query(coll, orderBy("description"))
+    const querySnapshot = await getDocs(sectionsQueryRef);
     const documents = querySnapshot.docs.map((doc) => {
       return {
         ...doc.data(),
@@ -19,3 +19,56 @@ export async function GET(request, { params }) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
+export async function POST(request, { params }) {
+  try {
+    const body = await request.json();
+
+    const coll = collection(db, collName);
+
+    const newDoc = await addDoc(coll, body);
+
+    return NextResponse.json(newDoc.id, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(request, { params }) {
+  try {
+    const body = await request.json();
+
+    const docRef = doc(db, collName, body.id);
+
+    const updatedDoc = {
+      sku: body.sku,
+      category: body.category,
+      ean: body.ean,
+      stock: body.stock,
+      price: body.price,
+      description: body.description,
+      brand: body.brand,
+      situation: body.situation
+    };
+
+    await updateDoc(docRef, updatedDoc);
+
+    return NextResponse.json(updatedDoc, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(request, { params }) {
+  try {
+    const body = await request.json();
+
+    const docRef = doc(db, collName, body.id); 
+    deleteDoc(docRef)
+
+    return NextResponse.json(body.id, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+

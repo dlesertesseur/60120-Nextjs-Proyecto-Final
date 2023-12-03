@@ -1,5 +1,5 @@
 import { db } from "@/firebase/config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 const collName = "categories";
@@ -7,7 +7,8 @@ const collName = "categories";
 export async function GET(request, { params }) {
   try {
     const coll = collection(db, collName);
-    const querySnapshot = await getDocs(coll);
+    const sectionsQueryRef = query(coll, orderBy("order"))
+    const querySnapshot = await getDocs(sectionsQueryRef);
 
     const documents = querySnapshot.docs.map((doc) => {
       return {

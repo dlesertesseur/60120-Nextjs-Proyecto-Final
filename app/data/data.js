@@ -3826,3 +3826,23 @@ export const products = [
     slug: "torta-royal-para-preparar-sabor-vainilla-500gr",
   },
 ];
+
+export const SITUATIONS = [
+  {
+    value: "Normal",
+    id: "normal",
+  },
+  {
+    value: "Destacado",
+    id: "destacado",
+  },
+  {
+    value: "Oferta",
+    id: "oferta",
+  },
+  {
+    value: "Descuento",
+    id: "descuento",
+  },
+
+];

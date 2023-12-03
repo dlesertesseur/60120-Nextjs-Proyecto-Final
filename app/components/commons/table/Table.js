@@ -2,13 +2,22 @@ import Image from "next/image";
 import React from "react";
 import ProductCounter from "../ProductCounter";
 import DeleteButton from "../DeleteButton";
+import UpdateButton from "../UpdateButton";
+import ImagesButton from "../ImagesButton";
 
-const Table = ({ columns, rows, onDelete = null, onUpdate = null }) => {
+const Table = ({
+  columns,
+  rows,
+  onDelete = null,
+  onUpdate = null,
+  onImages = null,
+  compact = true,
+}) => {
   const createField = (obj, col, type) => {
     let field = null;
     switch (type) {
       case "image":
-        field = <Image src={obj[col]} width={32} height={32} alt={""} />;
+        field = <Image src={obj[col] ? obj[col] : "/noPicture.jpg"} width={32} height={32} alt={""} />;
         break;
 
       case "price":
@@ -32,6 +41,7 @@ const Table = ({ columns, rows, onDelete = null, onUpdate = null }) => {
       case "delete":
         field = (
           <DeleteButton
+            compact
             text={"Delete"}
             onClick={() => {
               onDelete(obj);
@@ -39,6 +49,30 @@ const Table = ({ columns, rows, onDelete = null, onUpdate = null }) => {
           ></DeleteButton>
         );
         break;
+
+      case "update":
+        field = (
+          <UpdateButton
+            compact
+            text={"Update"}
+            onClick={() => {
+              onUpdate(obj);
+            }}
+          ></UpdateButton>
+        );
+        break;
+
+        case "images":
+          field = (
+            <ImagesButton
+              compact
+              text={"Images"}
+              onClick={() => {
+                onImages(obj);
+              }}
+            ></ImagesButton>
+          );
+          break;
       default:
         field = obj[col];
         break;

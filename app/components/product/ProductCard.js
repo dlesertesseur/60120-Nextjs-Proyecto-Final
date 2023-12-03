@@ -3,12 +3,13 @@ import Link from "next/link";
 import React from "react";
 
 const ProductCard = ({ item }) => {
+  
   return (
     <Link href={`/products/detail/${item.slug}`}>
       <div className="shadow-lg rounded-b-md bg-slate-100 w-64">
         <Image
           className="p-0"
-          src={item.image}
+          src={item.image ? item.image : "/noPicture.jpg"}
           alt=""
           width={256}
           height={256}

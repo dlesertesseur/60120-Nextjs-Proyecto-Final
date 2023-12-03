@@ -3,12 +3,12 @@ import Section from "./Section";
 import Menu from "./Menu";
 import LinkButton from "./LinkButton";
 import SearchBox from "./SearchBox";
-import IconButton from "./IconButton";
 import Image from "next/image";
 import Link from "next/link";
+import CartButton from "./CartButton";
+import UserPanel from "../admin/UserPanel";
 import { menuPages, opportunities } from "../../data/data";
 import { getCategories } from "@/app/data/CategoryDao";
-import CartButton from "./CartButton";
 
 const Header = async ({ children }) => {
   
@@ -34,9 +34,8 @@ const Header = async ({ children }) => {
             <Link href={"/cart"}>
               <CartButton src={"/cart.png"} />
             </Link>
-            <Link href={"/signin"}>
-              <IconButton src={"/user.png"} />
-            </Link>
+
+            <UserPanel/>
           </Section>
         </div>
 

@@ -2,8 +2,9 @@ import React from "react";
 import Section from "../commons/Section";
 import IconButton from "../commons/IconButton";
 import Image from "next/image";
-import Button from "../commons/Button";
 import Link from "next/link";
+import LogoutButton from "./LogoutButton";
+import LabelValue from "../commons/LabelValue";
 
 const AdminHeader = ({ children }) => {
   return (
@@ -18,10 +19,14 @@ const AdminHeader = ({ children }) => {
             <Image src={"/logo.png"} width={40} height={40} alt={"logo"} />
           </Section>
 
+          <Section align="center">
+            <div className="flex items-center justify-center text-lg font-semibold">
+              Admin console
+            </div>
+          </Section>
+
           <Section align="right" className="invisible sm:visible">
-            <Link href={"/home"}>
-              <IconButton src={"/logout.png"} />
-            </Link>
+            <LogoutButton/>
           </Section>
         </div>
 
