@@ -1,16 +1,25 @@
 import Text from "@/app/components/commons/Text";
 import Filter from "@/app/components/product/Filter";
-import {
-  getAllBrandsByCategory,
-} from "@/app/data/ProductDao";
+import { getAllBrandsByCategory } from "@/app/data/ProductDao";
 import React, { Suspense } from "react";
 import ItemsList from "../../../components/product/ItemsList";
 import LoadingData from "./LoadingData";
+import { getCategories } from "@/app/data/CategoryDao";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: params.category.toUpperCase(),
   };
+}
+
+export async function generateStaticParams() {
+  const categories = await getCategories();
+ 
+  const ret = categories.map((c) => ({
+    category: c.slug,
+  }));
+
+  return ret;
 }
 
 const page = async ({ params }) => {
@@ -36,7 +45,7 @@ const page = async ({ params }) => {
         </div>
 
         <div className="flex flex-wrap gap-4 justify-left items-start">
-          <Suspense fallback={<LoadingData text="Loading category ..."/>}>
+          <Suspense fallback={<LoadingData text="Loading category ..." />}>
             <ItemsList category={params.category} />
           </Suspense>
         </div>
