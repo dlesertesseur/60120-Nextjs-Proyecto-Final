@@ -41,6 +41,7 @@ const ProductListPanel = ({ ownweId, products }) => {
         rows={products ? products : []}
         onDelete={onDelete}
         onUpdate={onUpdate}
+        onImages={() => {}}
       />
     </div>
   );

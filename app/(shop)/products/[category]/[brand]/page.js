@@ -1,7 +1,7 @@
 import Text from "@/app/components/commons/Text";
 import Link from "next/link";
 import React, { Suspense } from "react";
-import LoadingData from "../LoadingData";
+import LoadingData from "../../../../components/commons/LoadingData";
 import ItemsList from "@/app/components/product/ItemsList";
 
 export async function generateMetadata({ params, searchParams }, parent) {

@@ -17,19 +17,19 @@ const page = async ({ params }) => {
   const situations = SITUATIONS;
 
   const newProduct = {
-    sku: null,
-    category: null,
-    ean: null,
+    sku: "",
+    category: "",
+    ean: "",
     stock: 0,
-    image: null,
-    id: null,
-    slug: null,
-    currency: null,
+    image: "",
+    id: "",
+    slug: "",
+    currency: "",
     price: 0,
-    description: null,
-    brand: null,
-    owner: null,
-    situation: null,
+    description: "",
+    brand: "",
+    owner: "",
+    situation: "",
   };
 
   return (

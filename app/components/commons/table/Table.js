@@ -17,7 +17,14 @@ const Table = ({
     let field = null;
     switch (type) {
       case "image":
-        field = <Image src={obj[col] ? obj[col] : "/noPicture.jpg"} width={32} height={32} alt={""} />;
+        field = (
+          <Image
+            src={obj[col] ? obj[col] : "/noPicture.jpg"}
+            width={32}
+            height={32}
+            alt={""}
+          />
+        );
         break;
 
       case "price":
@@ -62,17 +69,17 @@ const Table = ({
         );
         break;
 
-        case "images":
-          field = (
-            <ImagesButton
-              compact
-              text={"Images"}
-              onClick={() => {
-                onImages(obj);
-              }}
-            ></ImagesButton>
-          );
-          break;
+      case "images":
+        field = (
+          <ImagesButton
+            compact
+            text={"Images"}
+            onClick={() => {
+              onImages(obj);
+            }}
+          ></ImagesButton>
+        );
+        break;
       default:
         field = obj[col];
         break;

@@ -1,5 +1,5 @@
+import LoadingData from "@/app/components/commons/LoadingData";
 import React from "react";
-import LoadingData from "./components/commons/LoadingData";
 
 const loading = () => {
   return (

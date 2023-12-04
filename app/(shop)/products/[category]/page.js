@@ -3,7 +3,7 @@ import Filter from "@/app/components/product/Filter";
 import { getAllBrandsByCategory } from "@/app/data/ProductDao";
 import React, { Suspense } from "react";
 import ItemsList from "../../../components/product/ItemsList";
-import LoadingData from "./LoadingData";
+import LoadingData from "../../../components/commons/LoadingData";
 import { getCategories } from "@/app/data/CategoryDao";
 
 export async function generateMetadata({ params, searchParams }, parent) {

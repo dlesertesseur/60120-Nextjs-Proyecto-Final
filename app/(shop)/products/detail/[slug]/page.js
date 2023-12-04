@@ -1,7 +1,7 @@
 import { getProductBySlug } from "@/app/data/ProductDao";
 import React, { Suspense } from "react";
 import ProductDetailPanel from "./ProductDetailPanel";
-import LoadingData from "../../[category]/LoadingData";
+import LoadingData from "../../../../components/commons/LoadingData";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const product = await getProductBySlug(params.slug);
