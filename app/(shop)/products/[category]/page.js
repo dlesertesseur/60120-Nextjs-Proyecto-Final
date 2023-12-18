@@ -1,9 +1,9 @@
 import Text from "@/app/components/commons/Text";
 import Filter from "@/app/components/product/Filter";
-import { getAllBrandsByCategory } from "@/app/data/ProductDao";
 import React, { Suspense } from "react";
 import ItemsList from "../../../components/product/ItemsList";
 import LoadingData from "../../../components/commons/LoadingData";
+import { getAllBrandsByCategory } from "@/app/data/ProductDao";
 import { getCategories } from "@/app/data/CategoryDao";
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -12,15 +12,15 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
-export async function generateStaticParams() {
-  const categories = await getCategories();
+// export async function generateStaticParams() {
+//   const categories = await getCategories();
  
-  const ret = categories.map((c) => ({
-    category: c.slug,
-  }));
+//   const ret = categories.map((c) => ({
+//     category: c.slug,
+//   }));
 
-  return ret;
-}
+//   return ret;
+// }
 
 const page = async ({ params }) => {
   const brandsByCategory = await getAllBrandsByCategory(params.category);

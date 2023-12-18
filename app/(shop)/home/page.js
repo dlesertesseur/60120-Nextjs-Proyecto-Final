@@ -1,7 +1,7 @@
 import Banner from "@/app/components/commons/Banner";
 import ProductsGroup from "@/app/components/product/ProductsGroup";
 
-export default function Home() {
+export default function page() {
   return (
     <main className="container m-aut">
       <Banner title={"Ofertas"} subtitle={"Por tiempo limitado"}/>

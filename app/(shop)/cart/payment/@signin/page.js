@@ -1,6 +1,5 @@
 import React from "react";
 import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
-import SinginPanel from "@/app/components/admin/SinginPanel";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {

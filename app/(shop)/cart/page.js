@@ -3,10 +3,12 @@ import PaymentDatailPanel from "@/app/components/product/PaymentDetailPanel";
 import CartPanel from "@/app/components/product/CartPanel";
 import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
 
-export const metadata = {
-  title: `${APP_NAME} - Cart`,
-  description: `${APP_DESCRIPTION}`,
-};
+export async function generateMetadata({ params }) {
+  return {
+    title: `${APP_NAME} - Cart`,
+    description: `${APP_DESCRIPTION}`,
+  };
+}
 
 const Cart = () => {
   return (
