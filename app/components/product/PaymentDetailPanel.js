@@ -6,7 +6,7 @@ import Button from "../commons/Button";
 import { CartContext } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
 
-const PaymentPanel = () => {
+const PaymentDatailPanel = () => {
   const { productsInCart } = useContext(CartContext);
   const router = useRouter();
   const [total, setTotal] = useState(0);
@@ -37,9 +37,9 @@ const PaymentPanel = () => {
       <div className="flex w-full mt-4 justify-end">
         <Button
           disabled={productsInCart?.length > 0 ? false : true}
-          text={"Pagar"}
+          text={"Finalizar compra"}
           onClick={() => {
-            //router.push("/cart/payment");
+            router.push("/cart/payment");
           }}
         />
       </div>
@@ -47,4 +47,4 @@ const PaymentPanel = () => {
   );
 };
 
-export default PaymentPanel;
+export default PaymentDatailPanel;

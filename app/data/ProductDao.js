@@ -1,4 +1,3 @@
-import { BASE_URL } from "./config";
 import { products } from "./data";
 
 export function getOffers(num) {
@@ -13,49 +12,49 @@ export function getOffers(num) {
 }
 
 export async function getProductBySlug(slug) {
-  const url = `${BASE_URL}/api/products/${slug}`;
+  const url = `/api/products/${slug}`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllProductsByCategory(category) {
-  const url = `${BASE_URL}/api/products/categories/${category}`;
+  const url = `/api/products/categories/${category}`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllProducts() {
-  const url = `${BASE_URL}/api/products`;
+  const url = `/api/products`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllProductsByOwner(ownerId) {
-  const url = `${BASE_URL}/api/products/users/${ownerId}`;
+  const url = `/api/products/users/${ownerId}`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllProductsBySituation(situation) {
-  const url = `${BASE_URL}/api/products/situations/${situation}`;
+  const url = `/api/products/situations/${situation}`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllBrandsByCategory(category) {
-  const url = `${BASE_URL}/api/products/categories/${category}/brands`;
+  const url = `/api/products/categories/${category}/brands`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;
 }
 
 export async function getAllProductsByCategoryAndBrand(category, brand) {
-  const url = `${BASE_URL}/api/products/categories/${category}/brands/${brand}`;
+  const url = `/api/products/categories/${category}/brands/${brand}`;
   const ret = await fetch(url, { cache: "no-store" });
   const data = await ret.json();
   return data;

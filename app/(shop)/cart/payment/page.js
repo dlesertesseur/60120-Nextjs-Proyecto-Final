@@ -1,24 +1,25 @@
-import React from "react";
+import DeliveryDetailPanel from "@/app/components/product/DeliveryDatailPanel";
 import PaymentDatailPanel from "@/app/components/product/PaymentDetailPanel";
-import CartPanel from "@/app/components/product/CartPanel";
+import PurchaseSummary from "@/app/components/product/PurchaseSummary";
 import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import React from "react";
 
 export const metadata = {
-  title: `${APP_NAME} - Cart`,
+  title: `${APP_NAME} - Payment`,
   description: `${APP_DESCRIPTION}`,
 };
 
-const Cart = () => {
+const page = () => {
   return (
     <div className="container m-auto">
       <div className="flex-1">
-        <CartPanel />
+        <PurchaseSummary />
       </div>
       <div className="flex justify-end">
-        <PaymentDatailPanel />
+        <DeliveryDetailPanel />
       </div>
     </div>
   );
 };
 
-export default Cart;
+export default page;

@@ -4,8 +4,8 @@ import InputEmail from "../commons/InputEmail";
 import InputPassword from "../commons/InputPassword";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { BASE_URL } from "@/app/data/config";
-import { UserContext } from "@/app/context/UserContext";
+import { useUserContext } from "@/app/context/UserContext";
+import Alert from "../commons/Alert";
 
 const SinginPanel = () => {
   const router = useRouter();
@@ -13,33 +13,22 @@ const SinginPanel = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const {setUser} = useContext(UserContext);
-  
+  const { signinUser, userError } = useUserContext();
+
   async function submitForm(event) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
-    const body = JSON.stringify({
+    const body = {
       email: formData.get("email"),
       password: formData.get("password"),
-    });
+    };
 
-    const url = `${BASE_URL}/api/auth`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      body: body,
-    });
-
-    const ret = await res.json();
-
-    if (ret.error) {
-      const err = { message: ret.error, status: res.status };
-      setError(err);
-    } else {
-      setUser(ret);
-      router.push(`/admin/${ret.id}`);
+    try {
+      signinUser(body);
+    } catch (error) {
+      console.log("######## error -> ", error);
     }
   }
 
@@ -82,6 +71,7 @@ const SinginPanel = () => {
             value={password}
             error={error?.status === 401 ? error.message : null}
           />
+          {userError ? <Alert text={userError}/> : null}
 
           <div>
             <button

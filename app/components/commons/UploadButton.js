@@ -2,15 +2,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-const UploadButton = (
-  label,
-  setValue,
-  value,
-  name,
-  compact = true,
-  onClick
-) => {
-  const [picture, setPicture] = useState(null);
+const UploadButton = ({ label, name, setPicture }) => {
+  const [picture] = useState(null);
   const [imgData, setImgData] = useState(null);
 
   const onChangePicture = (e) => {
@@ -33,7 +26,9 @@ const UploadButton = (
           height={144}
           className={"flex"}
         ></Image>
-      ) : <div className="box-border h-36 w-36 border-2"></div>}
+      ) : (
+        <div className="box-border h-36 w-36 border-2"></div>
+      )}
       <input
         type="file"
         id={label}

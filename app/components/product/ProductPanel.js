@@ -13,8 +13,9 @@ const ProductPanel = ({
   disabled = false,
   onAction = null,
 }) => {
-  const route = useRouter();
+  const router = useRouter();
   const [state, setState] = useState({ slug: "" });
+  const [file, setFile] = useState(null);
 
   useEffect(() => {
     if (product) {
@@ -67,9 +68,7 @@ const ProductPanel = ({
           label={label}
           name={field}
           setValue={(e) => {
-            const obj = { ...state };
-            obj[field] = e.currentTarget.value;
-            setState(obj);
+            setFile(e);
           }}
           value={state[field]}
           items={items}
@@ -80,9 +79,8 @@ const ProductPanel = ({
 
   async function submitForm(event) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
     if (onAction) {
-      onAction(product?.id, formData);
+      onAction(product?.id, state, file);
     }
   }
 
@@ -127,7 +125,7 @@ const ProductPanel = ({
                 className="flex justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 onClick={(e) => {
                   e.preventDefault();
-                  route.back();
+                  router.back();
                 }}
               >
                 Cancel

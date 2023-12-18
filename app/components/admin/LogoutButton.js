@@ -6,16 +6,16 @@ import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
   const router = useRouter();
-  const { user, setUser } = useContext(UserContext);
+  const { user, signoutUser} = useContext(UserContext);
   return (
     <div className="flex items-center">
       {user ? (
-        <div className="flex text-sm font-medium text-gray-500 px-1">{`${user.lastName}, ${user.name}`}</div>
+        <div className="flex text-sm font-medium text-gray-500 px-1">{`${user.email ? user.email : null}`}</div>
       ) : null}
       <IconButton
         src={"/logout.png"}
-        onClick={() => {
-          setUser(null);
+        onClick={async () => {
+          await signoutUser();
           router.replace("/home");
         }}
       />

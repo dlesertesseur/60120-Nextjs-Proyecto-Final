@@ -6,38 +6,37 @@ import Image from "next/image";
 import InputText from "../commons/InputText";
 import { useRouter } from "next/navigation";
 import { BASE_URL } from "@/app/data/config";
+import { useUserContext } from "@/app/context/UserContext";
+import InputTextArea from "../commons/InputTextArea";
 
 const SingupPanel = () => {
+  const { registerUser } = useUserContext();
+
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [lastName, setLastName] = useState("");
   const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
 
   async function submitForm(event) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
-    const body = JSON.stringify({
+    const body = {
       lastName: formData.get("lastName"),
       name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
-    });
+      address: formData.get("address"),
+    };
 
-    const url = `${BASE_URL}/api/users`;
-
-    const res = await fetch(url, {
-      method: "POST",
-      body: body,
-    });
-
-    const ret = await res.json();
-
-    if (ret.error) {
-    } else {
-      router.push("/signin");
+    try {
+      await registerUser(body);
+      router.replace("/home");
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -52,15 +51,13 @@ const SingupPanel = () => {
           height={128}
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          {"Sign in to your account"}
+          {"Register a new user"}
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
           className="space-y-6"
           onSubmit={submitForm}
-          method="POST"
-          action={`${BASE_URL}/api/users`}
         >
           <InputText
             label={"Last Name"}
@@ -85,7 +82,14 @@ const SingupPanel = () => {
             }}
             value={email}
           />
-
+          <InputTextArea
+            label={"Address"}
+            name={"address"}
+            setValue={(e) => {
+              setAddress(e.target.value);
+            }}
+            value={address}
+          />
           <InputPassword
             label={"Password"}
             setValue={(e) => {

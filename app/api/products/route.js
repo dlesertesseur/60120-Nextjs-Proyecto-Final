@@ -1,12 +1,21 @@
 import { db } from "@/firebase/config";
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+} from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 const collName = "products";
 export async function GET(request, { params }) {
-  try {  
+  try {
     const coll = collection(db, collName);
-    const sectionsQueryRef = query(coll, orderBy("description"))
+    const sectionsQueryRef = query(coll, orderBy("description"));
     const querySnapshot = await getDocs(sectionsQueryRef);
     const documents = querySnapshot.docs.map((doc) => {
       return {
@@ -23,12 +32,12 @@ export async function GET(request, { params }) {
 export async function POST(request, { params }) {
   try {
     const body = await request.json();
+    const newDoc = { ...body };
+    delete newDoc.id;
 
-    const coll = collection(db, collName);
+    await setDoc(doc(db, collName, body.id), newDoc);
 
-    const newDoc = await addDoc(coll, body);
-
-    return NextResponse.json(newDoc.id, { status: 200 });
+    return NextResponse.json(body, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -37,23 +46,32 @@ export async function POST(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const body = await request.json();
+    const id = body.id;
 
-    const docRef = doc(db, collName, body.id);
+    delete body.id;
 
-    const updatedDoc = {
-      sku: body.sku,
-      category: body.category,
-      ean: body.ean,
-      stock: body.stock,
-      price: body.price,
-      description: body.description,
-      brand: body.brand,
-      situation: body.situation
-    };
+    const docRef = doc(db, collName, id);
+    const docSnap = await getDoc(docRef);
 
-    await updateDoc(docRef, updatedDoc);
+    if (docSnap.exists()) {
+      const product = docSnap.data();
+      product.sku = body.sku;
+      product.category = body.category;
+      product.ean = body.ean;
+      product.stock = body.stock;
+      product.slug = body.slug;
+      product.price = body.price;
+      product.description = body.description;
+      product.brand = body.brand;
+      product.situation = body.situation ? body.situation : "NORMAL";
+      product.image = body.image ? body.image : product.image;
 
-    return NextResponse.json(updatedDoc, { status: 200 });
+      await setDoc(doc(db, collName, id), product);
+    } else {
+      throw new Error(`No such document! id = ${id}`) 
+    }
+
+    return NextResponse.json(body, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
@@ -63,12 +81,11 @@ export async function DELETE(request, { params }) {
   try {
     const body = await request.json();
 
-    const docRef = doc(db, collName, body.id); 
-    deleteDoc(docRef)
+    const docRef = doc(db, collName, body.id);
+    deleteDoc(docRef);
 
     return NextResponse.json(body.id, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
-

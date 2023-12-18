@@ -27,6 +27,9 @@ const CartPanel = () => {
 
   return (
     <div className="col-span-3">
+      <div className="flex justify-center mt-2 mb-4">
+        <div className="text-lg font-semibold">{"Productos en el carrito"}</div>
+      </div>
       <Table
         columns={columns}
         rows={productsInCart}

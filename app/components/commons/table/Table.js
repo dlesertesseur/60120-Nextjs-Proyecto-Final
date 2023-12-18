@@ -4,6 +4,7 @@ import ProductCounter from "../ProductCounter";
 import DeleteButton from "../DeleteButton";
 import UpdateButton from "../UpdateButton";
 import ImagesButton from "../ImagesButton";
+import StockStatus from "../../product/StockStatus";
 
 const Table = ({
   columns,
@@ -17,9 +18,14 @@ const Table = ({
     let field = null;
     switch (type) {
       case "image":
+        let img = null;
+        if (obj[col].startsWith("http")) {
+          img = obj[col];
+        }
+
         field = (
           <Image
-            src={obj[col] ? obj[col] : "/noPicture.jpg"}
+            src={img ? img : "/noPicture.jpg"}
             width={32}
             height={32}
             alt={""}
@@ -28,11 +34,20 @@ const Table = ({
         break;
 
       case "price":
-        field = `$ ${obj[col]}`;
+        field = <div className="text-right">{`$ ${obj[col]}`}</div>;
+        break;
+
+      case "quantityValue":
+        field = <div className="text-right">{`${obj[col]}`}</div>;
         break;
 
       case "subTotal":
-        field = `$ ${obj["price"] * obj["quantity"]}`;
+        field = (
+          <div className="text-right">{`$ ${
+            obj["price"] * obj["quantity"]
+          }`}</div>
+        );
+
         break;
 
       case "quantity":
@@ -80,6 +95,11 @@ const Table = ({
           ></ImagesButton>
         );
         break;
+
+      case "stock":
+        field = <StockStatus item={obj} />;
+        break;
+
       default:
         field = obj[col];
         break;

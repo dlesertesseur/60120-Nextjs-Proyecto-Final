@@ -1,20 +1,23 @@
-import { BASE_URL } from "./config";
-
-export const registerUser = async (body) => {
+export const registerUserInfo = async (body) => {
   let response = false;
-  const url = `${BASE_URL}/api/users`;
-
-  console.log("registerUser url ->", url, body);
+  const url = `/api/users`;
 
   const ret = await fetch(url, {
     method: "POST",
-    body: body,
+    body: JSON.stringify(body),
   });
 
   const data = await ret.json();
   if (data.id) {
-    response = true;
+    throw new Error("Error creating user");
   } 
   
   return response;
 };
+
+export async function getUserByEmail(email) {
+  const url = `/api/users/${email}`;
+  const ret = await fetch(url, { cache: "no-store" });
+  const data = await ret.json();
+  return data;
+}
