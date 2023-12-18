@@ -1,6 +1,6 @@
 "use client";
-import React, { useContext } from "react";
-import { CartContext } from "@/app/context/CartContext";
+import React from "react";
+import { useCartContext } from "@/app/context/CartContext";
 import Table from "../commons/table/Table";
 
 const columns = [
@@ -15,7 +15,7 @@ const columns = [
 ];
 
 const PurchaseSummary = () => {
-  const { productsInCart } = useContext(CartContext);
+  const { productsInCart } = useCartContext();
   return (
     <div className="col-span-3">
       <div className="flex justify-center mt-2 mb-4">

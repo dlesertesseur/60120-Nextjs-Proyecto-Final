@@ -1,15 +1,15 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LabelValue from "../commons/LabelValue";
 import PaymentMethods from "../commons/PaymentMethods";
 import Button from "../commons/Button";
-import { CartContext } from "@/app/context/CartContext";
+import { useCartContext } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/app/context/UserContext";
 import InputText from "../commons/InputText";
 
 const DeliveryDetailPanel = () => {
-  const { productsInCart, clearCart } = useContext(CartContext);
+  const { productsInCart, clearCart } = useCartContext();
   const { userInfo } = useUserContext();
   const router = useRouter();
   const [total, setTotal] = useState(0);
@@ -36,9 +36,11 @@ const DeliveryDetailPanel = () => {
 
       ret += p.price * q;
       units += q;
+
+      items.push({ productId: p.id, quantity: q, total: (p.price * q) });
+
       q = 0;
 
-      items.push({ productId: p.id, quantity: q, units: units, total: ret });
     });
 
     setTotal(ret);
@@ -55,10 +57,7 @@ const DeliveryDetailPanel = () => {
       products: items,
     };
 
-    console.log("New onAction newpPurchase ->", newpPurchase);
-
     const body = JSON.stringify(newpPurchase);
-
     const url = `/api/purchases`;
 
     const res = await fetch(url, {

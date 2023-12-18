@@ -1,10 +1,10 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import IconButton from "./IconButton";
-import { CartContext } from "@/app/context/CartContext";
+import { useCartContext } from "@/app/context/CartContext";
 
 const CartButton = (props) => {
-  const { hasProducts } = useContext(CartContext);
+  const { hasProducts } = useCartContext();
   return <IconButton {...props} alert={hasProducts()} />;
 };
 

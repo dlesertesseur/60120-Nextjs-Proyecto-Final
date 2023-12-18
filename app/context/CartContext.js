@@ -4,7 +4,8 @@ import { createContext, useContext, useState } from "react";
 export const CartContext = createContext();
 
 export const useCartContext = () => {
-  useContext(CartContext);
+  const ctx = useContext(CartContext);
+  return ctx;
 };
 
 export const CartProvider = ({ children }) => {
@@ -13,15 +14,15 @@ export const CartProvider = ({ children }) => {
   const addProductToCart = (product, quantity) => {
     const found = productsInCart.find((p) => p.id === product.id);
     if (found) {
-      if(found.quantity){
+      if (found.quantity) {
         found.quantity += quantity;
-      }else{
+      } else {
         found.quantity = quantity;
       }
 
       setProductInCart([...productsInCart]);
     } else {
-      const obj = {...product, quantity:quantity}
+      const obj = { ...product, quantity: quantity };
       setProductInCart([...productsInCart, obj]);
     }
   };
@@ -40,13 +41,13 @@ export const CartProvider = ({ children }) => {
   };
 
   const hasProducts = (product) => {
-    return(productsInCart.length > 0 ? true : false);
+    return productsInCart.length > 0 ? true : false;
   };
 
   const clearCart = () => {
     setProductInCart(null);
-  }
-  
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -55,7 +56,7 @@ export const CartProvider = ({ children }) => {
         updateProductInCart,
         removeProductFromCart,
         hasProducts,
-        clearCart
+        clearCart,
       }}
     >
       {children}

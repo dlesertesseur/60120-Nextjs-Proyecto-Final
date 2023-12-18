@@ -1,13 +1,13 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import LabelValue from "../commons/LabelValue";
 import PaymentMethods from "../commons/PaymentMethods";
 import Button from "../commons/Button";
-import { CartContext } from "@/app/context/CartContext";
+import { useCartContext } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
 
 const PaymentPanel = () => {
-  const { productsInCart } = useContext(CartContext);
+  const { productsInCart } = useCartContext();
   const router = useRouter();
   const [total, setTotal] = useState(0);
   const [units, setUnits] = useState(0);

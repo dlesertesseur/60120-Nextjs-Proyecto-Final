@@ -1,6 +1,8 @@
+import { config } from "../config";
+
 export const registerUserInfo = async (body) => {
   let response = false;
-  const url = `/api/users`;
+  const url = `${config.APP_DOMAIN}/api/users`;
 
   const ret = await fetch(url, {
     method: "POST",

@@ -79,7 +79,7 @@ const UserProvider = ({ children }) => {
         });
       }
     } catch (error) {
-      setUserError(error);
+      setUserError(error.messase);
     }
   };
   useEffect(() => {

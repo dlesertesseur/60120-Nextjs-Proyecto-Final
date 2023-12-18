@@ -1,12 +1,12 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import IconButton from "../commons/IconButton";
-import { UserContext } from "@/app/context/UserContext";
+import {useUserContext } from "@/app/context/UserContext";
 import { useRouter } from "next/navigation";
 
 const LogoutButton = () => {
   const router = useRouter();
-  const { user, signoutUser} = useContext(UserContext);
+  const { user, signoutUser} = useUserContext();
   return (
     <div className="flex items-center">
       {user ? (

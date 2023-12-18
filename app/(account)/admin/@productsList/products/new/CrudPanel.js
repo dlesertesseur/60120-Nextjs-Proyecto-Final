@@ -1,14 +1,15 @@
 "use client";
 import ProductPanel from "@/app/components/product/ProductPanel";
-import { UserContext } from "@/app/context/UserContext";
+import { useUserContext } from "@/app/context/UserContext";
 import { storage } from "@/firebase/config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
-import React, { useContext } from "react";
+import React from "react";
+import { config } from "@/app/config";
 
 const CrudPanel = ({ categories, product, situations }) => {
-  const { user } = useContext(UserContext);
+  const { user } = useUserContext();
   const router = useRouter();
 
   const onAction = async (id, values, file) => {
@@ -39,7 +40,7 @@ const CrudPanel = ({ categories, product, situations }) => {
 
     const body = JSON.stringify(newProduct);
 
-    const url = `/api/products`;
+    const url = `${config.APP_DOMAIN}/api/products`;
 
     const res = await fetch(url, {
       method: "POST",

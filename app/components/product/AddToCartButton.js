@@ -1,11 +1,11 @@
 "use client";
-import { CartContext } from "@/app/context/CartContext";
+import React from "react";
+import { useCartContext } from "@/app/context/CartContext";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
 
 const AddToCartButton = ({ product, quantity }) => {
   const router = useRouter();
-  const { addProductToCart } = useContext(CartContext);
+  const { addProductToCart } = useCartContext();
 
   const onClick = () => {
     addProductToCart(product, quantity);
