@@ -1,7 +1,7 @@
 import React from "react";
 import PaymentDatailPanel from "@/app/components/product/PaymentDetailPanel";
 import CartPanel from "@/app/components/product/CartPanel";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 
 export async function generateMetadata({ params }) {
   return {

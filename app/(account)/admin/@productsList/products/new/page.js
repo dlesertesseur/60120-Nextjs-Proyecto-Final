@@ -1,6 +1,6 @@
 import React from "react";
 import CrudPanel from "./CrudPanel";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 import { getCategories } from "@/app/data/CategoryDao";
 import { SITUATIONS } from "@/app/data/data";
 

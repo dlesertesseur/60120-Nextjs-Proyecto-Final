@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
-const LinkButton = ({ text, href = "#", className=null }) => {
+const LinkButton = ({ text, href, className=null }) => {
   const path = usePathname();
 
   return (

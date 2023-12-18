@@ -1,7 +1,7 @@
 import DeliveryDetailPanel from "@/app/components/product/DeliveryDatailPanel";
 import PaymentDatailPanel from "@/app/components/product/PaymentDetailPanel";
 import PurchaseSummary from "@/app/components/product/PurchaseSummary";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 import React from "react";
 
 export const metadata = {

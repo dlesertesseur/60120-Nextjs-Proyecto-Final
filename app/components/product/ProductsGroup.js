@@ -1,9 +1,9 @@
-import { getAllProductsBySituation, getOffers } from "@/app/data/ProductDao";
+import { getAllProductsBySituation } from "@/app/data/ProductDao";
 import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductsGroup = async ({situation}) => {
-  const items = await getAllProductsBySituation(situation);
+  const items = await getAllProductsBySituation();
 
   return (
     <div className="flex-row gap-4">

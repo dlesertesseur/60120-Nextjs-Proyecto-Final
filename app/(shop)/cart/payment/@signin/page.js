@@ -1,5 +1,5 @@
 import React from "react";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 import Link from "next/link";
 
 export async function generateMetadata({ params }) {

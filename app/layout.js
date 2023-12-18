@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { APP_DESCRIPTION, APP_KEYWORDS, APP_NAME } from "./data/config";
+import { APP_DESCRIPTION, APP_KEYWORDS, APP_NAME } from "./data/dataConstants";
 import { CartProvider } from "./context/CartContext";
 import { UserProvider } from "./context/UserContext";
 

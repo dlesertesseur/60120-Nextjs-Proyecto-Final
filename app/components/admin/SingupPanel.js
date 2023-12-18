@@ -5,7 +5,7 @@ import InputPassword from "../commons/InputPassword";
 import Image from "next/image";
 import InputText from "../commons/InputText";
 import { useRouter } from "next/navigation";
-import { BASE_URL } from "@/app/data/config";
+import { BASE_URL } from "@/app/data/dataConstants";
 import { useUserContext } from "@/app/context/UserContext";
 import InputTextArea from "../commons/InputTextArea";
 

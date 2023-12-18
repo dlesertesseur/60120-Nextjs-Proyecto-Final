@@ -1,5 +1,5 @@
 import React from "react";
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 import SingupPanel from "@/app/components/admin/SingupPanel";
 
 export const metadata = {

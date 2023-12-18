@@ -4,23 +4,12 @@ import React, { Suspense } from "react";
 import ItemsList from "../../../components/product/ItemsList";
 import LoadingData from "../../../components/commons/LoadingData";
 import { getAllBrandsByCategory } from "@/app/data/ProductDao";
-import { getCategories } from "@/app/data/CategoryDao";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: params.category.toUpperCase(),
   };
 }
-
-// export async function generateStaticParams() {
-//   const categories = await getCategories();
- 
-//   const ret = categories.map((c) => ({
-//     category: c.slug,
-//   }));
-
-//   return ret;
-// }
 
 const page = async ({ params }) => {
   const brandsByCategory = await getAllBrandsByCategory(params.category);

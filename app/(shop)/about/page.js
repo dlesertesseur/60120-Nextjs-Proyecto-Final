@@ -1,11 +1,11 @@
-import { APP_DESCRIPTION, APP_NAME } from "@/app/data/config";
+import { APP_DESCRIPTION, APP_NAME } from "@/app/data/dataConstants";
 import React from "react";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: `${APP_NAME} - About`,
     description: `${APP_DESCRIPTION}`,
-    }
+  };
 }
 
 const About = () => {
