@@ -3,7 +3,7 @@ import React from "react";
 import ProductCard from "./ProductCard";
 
 const ProductsGroup = async ({situation}) => {
-  const items = await getAllProductsBySituation();
+  const items = await getAllProductsBySituation(situation);
 
   return (
     <div className="flex-row gap-4">

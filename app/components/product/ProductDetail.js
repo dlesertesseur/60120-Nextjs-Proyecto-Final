@@ -31,7 +31,7 @@ const ProductDetail = ({ product }) => {
           </div>
 
           <div className="mt-2">
-            <ProductCounter setValue={setQuantity} value={quantity}/>
+            <ProductCounter setValue={setQuantity} value={quantity} disabled={product.stock <= 0 ? true : false}/>
           </div>
 
           <div className="mt-2">
@@ -39,7 +39,7 @@ const ProductDetail = ({ product }) => {
           </div>
 
           <div className="flex items-end justify-end">
-            <AddToCartButton product={product} quantity={quantity} />
+            <AddToCartButton product={product} quantity={quantity} disabled={product.stock <= 0 ? true : false}/>
           </div>
         </div>
       </div>

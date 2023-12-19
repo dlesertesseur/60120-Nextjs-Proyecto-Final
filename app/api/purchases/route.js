@@ -1,3 +1,4 @@
+import { getProductById } from "@/app/data/ProductDao";
 import { db } from "@/firebase/config";
 import { doc, setDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
@@ -9,9 +10,26 @@ export async function POST(request, { params }) {
   try {
     const pid = uuidv4();
     const body = await request.json();
-    const newDoc = { ...body };
+    const products = body.products ;
 
-    await setDoc(doc(db, collName, pid), newDoc);
+    await setDoc(doc(db, collName, pid), body);
+
+    for (let index = 0; index < products.length; index++) {
+      const productSold = products[index];
+      
+      const product = await getProductById(productSold.productId);
+      if(product){
+
+        if(product.stock > 0){
+          if(product.stock >= productSold.quantity){
+            product.stock = product.stock - productSold.quantity;
+          }else{
+            product.stock = 0;
+          }
+          await setDoc(doc(db, "products", product.id), product);
+        }
+      }
+    }
 
     return NextResponse.json(body, { status: 200 });
   } catch (error) {

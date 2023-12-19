@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const clearCart = () => {
-    setProductInCart(null);
+    setProductInCart([]);
   };
 
   return (

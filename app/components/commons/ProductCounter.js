@@ -1,6 +1,5 @@
 "use client";
-const ProductCounter = ({ setValue, value }) => {
-  
+const ProductCounter = ({ setValue, value, disabled }) => {
   const increase = () => {
     setValue(value + 1);
   };
@@ -18,18 +17,20 @@ const ProductCounter = ({ setValue, value }) => {
       }
     >
       <button
-        className={
-          "text-center text-white bg-blue-500 rounded-sm text-xl w-8 h-8"
-        }
+        disabled={disabled}
+        className={`text-center ${disabled ? "text-gray-500" : "text-white"} ${
+          disabled ? "bg-gray-300" : "bg-blue-500"
+        } rounded-sm text-xl w-8 h-8`}
         onClick={increase}
       >
         {"+"}
       </button>
       <div className="text-center text-xl">{value}</div>
       <button
-        className={
-          "text-center text-white bg-blue-500 rounded-sm text-xl w-8 h-8"
-        }
+        disabled={disabled}
+        className={`text-center ${disabled ? "text-gray-500" : "text-white"} ${
+          disabled ? "bg-gray-300" : "bg-blue-500"
+        } rounded-sm text-xl w-8 h-8`}
         onClick={decreate}
       >
         {"-"}

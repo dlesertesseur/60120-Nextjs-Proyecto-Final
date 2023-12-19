@@ -16,6 +16,7 @@ const DeliveryDetailPanel = () => {
   const [units, setUnits] = useState(0);
   const [cartNumber, setCartNumber] = useState(null);
   const [items, setItems] = useState(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     let ret = 0;
@@ -37,19 +38,18 @@ const DeliveryDetailPanel = () => {
       ret += p.price * q;
       units += q;
 
-      items.push({ productId: p.id, quantity: q, total: (p.price * q) });
+      items.push({ productId: p.id, quantity: q, total: p.price * q });
 
       q = 0;
-
     });
 
     setTotal(ret);
     setUnits(units);
     setItems(items);
-
   }, [productsInCart]);
 
   const onAction = async () => {
+    setSaving(true);
     const newpPurchase = {
       user: userInfo.email,
       total: total,
@@ -67,6 +67,8 @@ const DeliveryDetailPanel = () => {
 
     const ret = await res.json();
 
+    setSaving(false);
+    
     if (ret.error) {
     } else {
       clearCart();
@@ -86,6 +88,7 @@ const DeliveryDetailPanel = () => {
         <LabelValue label={"Total"} value={`$ ${total}`} className="mb-5" />
         <div className="w-1/2">
           <InputText
+            disabled={saving}
             label={"Numero de tarjeta"}
             setValue={(e) => {
               setCartNumber(e.target.value);
@@ -114,14 +117,15 @@ const DeliveryDetailPanel = () => {
         <PaymentMethods />
         <div className="flex w-full mt-4 justify-end">
           <Button
+            loading={saving}
             disabled={
-              productsInCart?.length > 0 && cartNumber?.length > 0
+              productsInCart?.length > 0 && cartNumber?.length > 0 && !saving
                 ? false
                 : true
             }
-            text={"Pagar"}
+            text={saving ? "Realizando compra" : "Pagar"}
             onClick={onAction}
-          />
+          ></Button>
         </div>
       </div>
     </div>

@@ -6,7 +6,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from 'uuid';
 import React from "react";
-import { config } from "@/app/config";
 
 const CrudPanel = ({ categories, product, situations }) => {
   const { user } = useUserContext();
@@ -36,11 +35,9 @@ const CrudPanel = ({ categories, product, situations }) => {
       image:fileURL
     };
 
-    console.log("New onAction newProduct ->", newProduct);
-
     const body = JSON.stringify(newProduct);
 
-    const url = `${config.APP_DOMAIN}/api/products`;
+    const url = `/api/products`;
 
     const res = await fetch(url, {
       method: "POST",
