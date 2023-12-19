@@ -53,7 +53,7 @@ export async function getAllProductsByCategory(category) {
   return documents;
 }
 
-export async function getAllProducts() {
+export async function getAllProducts(params) {
   const coll = collection(db, collName);
   const sectionsQueryRef = query(coll, orderBy("description"));
   const querySnapshot = await getDocs(sectionsQueryRef);

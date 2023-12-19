@@ -1,10 +1,8 @@
 import React from "react";
 import AdminProductsTable from "./AdminProductsTable";
 import Button from "../commons/Button";
-import { getAllProducts } from "@/app/data/ProductDao";
 
-const ProductsListPanel = async () => {
-  const products = await getAllProducts();
+const ProductsListPanel = async ({products}) => {
 
   const columns = [
     { field: "image", label: "Foto", type: "image" },

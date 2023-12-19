@@ -1,10 +1,7 @@
 import React from "react";
 import Section from "../commons/Section";
-import IconButton from "../commons/IconButton";
 import Image from "next/image";
-import Link from "next/link";
 import LogoutButton from "./LogoutButton";
-import LabelValue from "../commons/LabelValue";
 
 const AdminHeader = ({ children }) => {
   return (
