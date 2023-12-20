@@ -23,7 +23,12 @@ const UserProvider = ({ children }) => {
   const router = useRouter();
 
   const registerUser = async (values) => {
-    await createUserWithEmailAndPassword(auth, values.email, values.password);
+    await createUserWithEmailAndPassword(
+      auth,
+      values.email,
+      values.password
+    );
+
     const info = { ...values, role: "user" };
 
     delete info.password;
@@ -92,24 +97,25 @@ const UserProvider = ({ children }) => {
     try {
       if (user && user.email) {
         const info = await getUserByEmail(user?.email);
+        if (info) {
+          setUserInfo({
+            logged: true,
+            email: user.email,
+            uid: user.uid,
+            role: info.role,
+            name: info.name,
+            address: info.address,
+            lastName: info.lastName,
+          });
 
-        setUserInfo({
-          logged: true,
-          email: user.email,
-          uid: user.uid,
-          role: info.role,
-          name: info.name,
-          address: info.address,
-          lastName: info.lastName,
-        });
-
-        router.push(`/admin`);
+          router.push(`/admin`);
+        }
       }
     } catch (error) {
       setUserError(error.messase);
     }
   };
-  
+
   useEffect(() => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

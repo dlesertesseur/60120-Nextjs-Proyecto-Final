@@ -5,9 +5,9 @@ import InputPassword from "../commons/InputPassword";
 import Image from "next/image";
 import InputText from "../commons/InputText";
 import { useRouter } from "next/navigation";
-import { BASE_URL } from "@/app/data/dataConstants";
 import { useUserContext } from "@/app/context/UserContext";
 import InputTextArea from "../commons/InputTextArea";
+import Alert from "../commons/Alert";
 
 const SingupPanel = () => {
   const { registerUser } = useUserContext();
@@ -18,6 +18,7 @@ const SingupPanel = () => {
   const [lastName, setLastName] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [error, setError] = useState(null);
 
   async function submitForm(event) {
     event.preventDefault();
@@ -34,9 +35,9 @@ const SingupPanel = () => {
 
     try {
       await registerUser(body);
-      router.replace("/home");
+      router.replace("/admin");
     } catch (error) {
-      console.log(error);
+      setError(error.code);
     }
   }
 
@@ -55,10 +56,7 @@ const SingupPanel = () => {
         </h2>
       </div>
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form
-          className="space-y-6"
-          onSubmit={submitForm}
-        >
+        <form className="space-y-6" onSubmit={submitForm}>
           <InputText
             label={"Last Name"}
             name={"lastName"}
@@ -97,6 +95,8 @@ const SingupPanel = () => {
             }}
             value={password}
           />
+
+          {error ? <Alert text={error} /> : null}
 
           <div>
             <button
