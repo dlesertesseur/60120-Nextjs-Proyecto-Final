@@ -5,37 +5,24 @@ import { getCategories } from "@/app/data/CategoryDao";
 import { SITUATIONS } from "@/app/data/data";
 
 export const metadata = {
-  title: `${APP_NAME} - New product`,
+  title: `${APP_NAME} - Update product`,
   description: `${APP_DESCRIPTION}`,
 };
 
 const page = async ({ params }) => {
+  const slug = params.slug;
+
+  // const product = await getProductBySlug(slug);
   const categories = await getCategories();
-  categories.shift();
 
   const situations = SITUATIONS;
-
-  const newProduct = {
-    sku: "",
-    category: "",
-    ean: "",
-    stock: 0,
-    image: "",
-    id: "",
-    slug: "",
-    currency: "",
-    price: 0,
-    description: "",
-    brand: "",
-    owner: "",
-    situation: "NORMAL",
-  };
 
   return (
     <main>
       <CrudPanel
         categories={categories}
-        product={newProduct}
+        // product={product}
+        slug={slug}
         situations={situations}
       />
     </main>

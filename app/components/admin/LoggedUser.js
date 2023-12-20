@@ -2,12 +2,12 @@ import React from "react";
 import AdminHeader from "./AdminHeader";
 import { redirect } from "next/navigation";
 
-const LoggedUser = ({ userInfo, productsList }) => {
+const LoggedUser = ({ userInfo, children }) => {
   const ret =
     userInfo.role === "admin" ? (
       <>
         <AdminHeader />
-        {productsList}
+        {children}
       </>
     ) : (
       redirect("/home")

@@ -72,7 +72,7 @@ const DeliveryDetailPanel = () => {
     if (ret.error) {
     } else {
       clearCart();
-      router.replace(`/home`);
+      router.replace(`/cart/notification`);
     }
   };
 
